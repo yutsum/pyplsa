@@ -69,6 +69,5 @@ class TestPLSA(unittest.TestCase):
             self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
 
 
-
 if __name__ == '__main__':
     unittest.main()

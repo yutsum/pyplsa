@@ -6,12 +6,19 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
 def normalize(mat, dim=()):
+    """ Normalize matrix by summing-up with specified dim
+    """
     s = mat.sum(dim=dim, keepdim=True)
     s[s == 0] = 1
     return mat / s
 
 
 def unsqueeze_ot(mat, i_s, n):
+    """ Unsqueeze other than i_s(list) dimensions up to n
+
+        >>> unsqeeze_ot(torch.tensor([1.0, 2.0]), 0, 2)
+        tensor([[1.0], [2.0]])
+    """
     r = mat.clone()
     for j in range(n):
         if not(j in i_s):
@@ -21,10 +28,21 @@ def unsqueeze_ot(mat, i_s, n):
 
 class PLSA:
     def __init__(self, data, nclass, seed=0):
-        # self.init_pz = normalize(torch.tensor(range(1, nclass+1)).float()).to(device)
-        self.init_pz = normalize(torch.ones(nclass)).to(device)
+        """
+            >>> p1 = PLSA(data, nclass)
+            >>> p1.em_algorith(100)
+            >>> print(p1.pz)
+            >>> print(p1.pxi_given_zs)
+        """
         self.data = torch.tensor(data, dtype=torch.float).to(device)
-        torch.random.manual_seed(seed)
+        self.nclass = nclass
+        self.seed = seed
+        self.reset()
+
+    def reset(self):
+        torch.random.manual_seed(self.seed)
+        nclass = self.nclass
+        self.init_pz = normalize(torch.ones(nclass)).to(device)
         self.init_pxi_given_zs = [torch.rand(nclass, n).to(device) / nclass
                                   for n in self.data.size()]
         self.pz = self.init_pz

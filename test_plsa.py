@@ -65,6 +65,7 @@ class TestPLSA(unittest.TestCase):
         self.plsa1.em_algorithm(10)
         ans = [torch.tensor([[0.7500, 0.2500, 0.0000], [0.0000, 0.0000, 1.0000]]),
                torch.tensor([[1.0000, 0.0000, 0.0000], [0.0000, 0.5000, 0.5000]])]
+        print(self.plsa1.loglik)
         for i in range(len(ans)):
             self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
 

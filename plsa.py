@@ -26,6 +26,12 @@ def unsqueeze_ot(mat, i_s, n):
     return r
 
 
+def run_plsa(comat, nclass, niter, seed=0):
+    p = PLSA(comat, nclass, seed)
+    p.em_algorithm(niter)
+    return {'pz': p.pz, 'pxi_given_zs': p.pxi_given_zs}
+
+
 class PLSA:
     def __init__(self, data, nclass, seed=0):
         """
@@ -47,6 +53,7 @@ class PLSA:
                                   for n in self.data.size()]
         self.pz = self.init_pz
         self.pxi_given_zs = self.init_pxi_given_zs
+        self.loglik = []
 
     def calc_pzxs(self):
         n = self.data.dim()
@@ -55,11 +62,18 @@ class PLSA:
               for j in range(len(self.pxi_given_zs))]
         return functools.reduce(torch.mul, ps[1:], ps[0])
 
-    def em_algorithm(self, niter):
+    def em_algorithm(self, niter, nintvl_lik=None):
+        if nintvl_lik is None:
+            nintvl_lik = max(np.floor(niter / 20.0), 1)
         for i in range(niter):
             # E-Step
             n = self.data.dim()
             pzxs = self.calc_pzxs()
+            if i % nintvl_lik == 0:
+                pxs = pzxs.sum(dim=0)
+                pxs[pxs == 0] = 1
+                ll = (pxs.log() * self.data).sum().item()
+                self.loglik = self.loglik + [ll]
             pz_given_xs = normalize(pzxs, 0)
             # M-Step
             tmp = pz_given_xs * self.data

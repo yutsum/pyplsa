@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "C:\\Users\\yts\\AppData\\Local\\conda\\conda\\envs\\drlnd\\python.exe",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
+}

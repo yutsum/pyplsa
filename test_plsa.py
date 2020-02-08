@@ -2,8 +2,10 @@ import unittest
 import plsa
 import torch
 
+
 def tdiff(m1, m2):
     return torch.sum(abs(m1 - m2))
+
 
 class TestUtility(unittest.TestCase):
     @classmethod
@@ -16,22 +18,33 @@ class TestUtility(unittest.TestCase):
         self.assertTrue((self.m1 / 9).eq(plsa.normalize(self.m1)).all())
 
     def test_normalize_0(self):
-        self.assertTrue( torch.tensor([[1.0/4, 1/5], [3/4, 4/5]]).eq(plsa.normalize(self.m1, 0)).all())
+        self.assertTrue(
+            torch.tensor([[1.0/4, 1/5], [3/4, 4/5]]).eq(
+                plsa.normalize(self.m1, 0)).all())
 
     def test_normalize_0_ng(self):
-        self.assertFalse( (1.1*torch.tensor([[1.0/4, 1/5], [3/4, 4/5]])).eq(plsa.normalize(self.m1, 0)).all())
+        self.assertFalse(
+            (1.1*torch.tensor([[1.0/4, 1/5], [3/4, 4/5]])).eq(
+                plsa.normalize(self.m1, 0)).all())
 
     def test_normalize_1(self):
-        self.assertAlmostEqual( torch.sum(abs(torch.tensor([[1.0/2, 1/2], [3/7, 4/7]]) - plsa.normalize(self.m1, 1))), 0)
+        self.assertAlmostEqual(
+            torch.sum(abs(torch.tensor(
+                [[1.0/2, 1/2], [3/7, 4/7]]) - plsa.normalize(self.m1, 1))), 0)
 
     def test_normalize_3_0(self):
-        self.assertTrue( (self.m2 / (5*self.m2[0,:,:])).eq(plsa.normalize(self.m2, 0)).all())
+        self.assertTrue(
+            (self.m2 / (5*self.m2[0, :, :])).eq(plsa.normalize(self.m2, 0)).all())
 
     def test_unsqueeze_ot_0(self):
-        self.assertEqual(0, tdiff(torch.tensor([[1.0], [2]]), plsa.unsqueeze_ot(self.m3, [0], 2)))
+        self.assertEqual(0, tdiff(
+            torch.tensor([[1.0], [2]]),
+            plsa.unsqueeze_ot(self.m3, [0], 2)))
 
     def test_unsqueeze_ot_1(self):
-        self.assertEqual(0, tdiff(torch.tensor([[1.0, 2]]), plsa.unsqueeze_ot(self.m3, [1], 2)))
+        self.assertEqual(0, tdiff(
+            torch.tensor([[1.0, 2]]), plsa.unsqueeze_ot(self.m3, [1], 2)))
+
 
 class TestPLSA(unittest.TestCase):
     @classmethod

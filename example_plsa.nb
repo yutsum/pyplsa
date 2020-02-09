@@ -1,0 +1,871 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     41510,        863]
+NotebookOptionsPosition[     40216,        833]
+NotebookOutlinePosition[     40560,        848]
+CellTagsIndexPosition[     40517,        845]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"session", " ", "=", " ", 
+  RowBox[{
+  "StartExternalSession", "[", "\"\<Python-NumPy\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.790209914630302*^9, 3.790209939892626*^9}, {
+  3.790210532728883*^9, 3.790210544869107*^9}},
+ CellLabel->
+  "In[181]:=",ExpressionUUID->"14e1705f-bb7e-479c-8c70-e32ebbd337e6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["ExternalSessionObject",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "FEBitmaps", "SquarePlusIconMedium"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                AbsoluteCurrentValue[Magnification]}]], 
+            GraphicsBox[{{
+               Hue[0.5766283524904214, 0.6682027649769585, 0.651], 
+               EdgeForm[None], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                 3}}, {{1, 4, 3}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {
+                 0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}}}, {{{58, 120}, {
+                 60, 120}, {62, 118}, {62, 115}, {62, 112}, {60, 110}, {58, 
+                 110}, {55, 110}, {53, 112}, {53, 115}, {53, 118}, {55, 
+                 120}, {58, 120}}, {{72, 128}, {44, 128}, {46, 116}, {46, 
+                 116}, {46, 104}, {73, 104}, {73, 100}, {36, 100}, {36, 
+                 100}, {18, 102}, {18, 74}, {18, 45}, {33, 46}, {33, 46}, {43,
+                  46}, {43, 59}, {43, 59}, {42, 75}, {58, 75}, {85, 75}, {85, 
+                 75}, {99, 75}, {99, 89}, {99, 114}, {99, 114}, {102, 128}, {
+                 72, 128}}}]}, {
+               Hue[0.1164, 0.745, 0.99], 
+               EdgeForm[None], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                 3}}, {{1, 4, 3}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {
+                 0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}}}, {{{88, 27}, {85,
+                  27}, {83, 29}, {83, 32}, {83, 34}, {85, 37}, {88, 37}, {91, 
+                 37}, {93, 34}, {93, 32}, {93, 29}, {91, 27}, {88, 27}}, {{73,
+                  18}, {101, 18}, {99, 31}, {99, 31}, {99, 43}, {73, 43}, {73,
+                  47}, {110, 47}, {110, 47}, {128, 45}, {128, 73}, {128, 
+                 102}, {112, 101}, {112, 101}, {103, 101}, {103, 87}, {103, 
+                 87}, {104, 72}, {88, 72}, {61, 72}, {61, 72}, {46, 72}, {46, 
+                 57}, {46, 33}, {46, 33}, {44, 18}, {73, 18}}}]}}, {
+             ImageSize -> {Automatic, 
+                Dynamic[3.5 CurrentValue["FontCapHeight"]]}, 
+              ImageSize -> {Automatic, 
+                Dynamic[3.5 CurrentValue["FontCapHeight"]]}}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"System: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Python-NumPy\"", "SummaryItem"]}], 
+               RowBox[{
+                 TagBox["\"EvaluationCount: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  DynamicBox[
+                   ToBoxes[
+                    If[$SessionID === 24399060321979682883, 
+                    ExternalSessionObject[
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"][
+                    "EvaluationCount"], None], StandardForm], 
+                   TrackedSymbols :> {$SessionID, 
+                    ExternalEvaluate`Private`$Links}], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"UUID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec\"", "SummaryItem"]}],
+                "\[SpanFromLeft]"}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "FEBitmaps", "SquareMinusIconMedium"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                AbsoluteCurrentValue[Magnification]}]], 
+            GraphicsBox[{{
+               Hue[0.5766283524904214, 0.6682027649769585, 0.651], 
+               EdgeForm[None], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                 3}}, {{1, 4, 3}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {
+                 0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}}}, {{{58, 120}, {
+                 60, 120}, {62, 118}, {62, 115}, {62, 112}, {60, 110}, {58, 
+                 110}, {55, 110}, {53, 112}, {53, 115}, {53, 118}, {55, 
+                 120}, {58, 120}}, {{72, 128}, {44, 128}, {46, 116}, {46, 
+                 116}, {46, 104}, {73, 104}, {73, 100}, {36, 100}, {36, 
+                 100}, {18, 102}, {18, 74}, {18, 45}, {33, 46}, {33, 46}, {43,
+                  46}, {43, 59}, {43, 59}, {42, 75}, {58, 75}, {85, 75}, {85, 
+                 75}, {99, 75}, {99, 89}, {99, 114}, {99, 114}, {102, 128}, {
+                 72, 128}}}]}, {
+               Hue[0.1164, 0.745, 0.99], 
+               EdgeForm[None], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                 3}}, {{1, 4, 3}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+                 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {
+                 0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}}}, {{{88, 27}, {85,
+                  27}, {83, 29}, {83, 32}, {83, 34}, {85, 37}, {88, 37}, {91, 
+                 37}, {93, 34}, {93, 32}, {93, 29}, {91, 27}, {88, 27}}, {{73,
+                  18}, {101, 18}, {99, 31}, {99, 31}, {99, 43}, {73, 43}, {73,
+                  47}, {110, 47}, {110, 47}, {128, 45}, {128, 73}, {128, 
+                 102}, {112, 101}, {112, 101}, {103, 101}, {103, 87}, {103, 
+                 87}, {104, 72}, {88, 72}, {61, 72}, {61, 72}, {46, 72}, {46, 
+                 57}, {46, 33}, {46, 33}, {44, 18}, {73, 18}}}]}}, {
+             ImageSize -> {Automatic, 
+                Dynamic[3.5 CurrentValue["FontCapHeight"]]}, 
+              ImageSize -> {Automatic, 
+                Dynamic[3.5 CurrentValue["FontCapHeight"]]}}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"System: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Python-NumPy\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"EvaluationCount: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  DynamicBox[
+                   ToBoxes[
+                    If[
+                    And[
+                    ValueQ[ExternalEvaluate`Private`$Links], 
+                    KeyExistsQ[
+                    ExternalEvaluate`Private`$Links, 
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"]], 
+                    ExternalEvaluate`Private`$Links[
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec", 
+                    "EvaluationCount"], None], StandardForm]], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"UUID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec\"", 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Process: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"ProcessObject", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"\"ManagedProcess\"", "\[Rule]", "True"}], ",", 
+                    RowBox[{"\"UID\"", "\[Rule]", "30"}], ",", 
+                    RowBox[{"\"PID\"", "\[Rule]", "27876"}], ",", 
+                    RowBox[{"\"PPID\"", "\[Rule]", "10124"}], ",", 
+                    RowBox[{"\"Program\"", "\[Rule]", "\"python.exe\""}], ",", 
+                    RowBox[{
+                    "\"Path\"", "\[Rule]", 
+                    "\"C:\\\\Users\\\\yts\\\\AppData\\\\Local\\\\conda\\\\\
+conda\\\\envs\\\\drlnd\\\\python.exe\""}], ",", 
+                    RowBox[{"\"User\"", "\[Rule]", "\"yts\""}], ",", 
+                    RowBox[{"\"StartTime\"", "\[Rule]", "1581225974"}]}], 
+                    "}"}], "]"}], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Epilog: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Missing", "[", 
+                    RowBox[{"\"KeyAbsent\"", ",", "\"Epilog\""}], "]"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Prolog: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Missing", "[", 
+                    RowBox[{"\"KeyAbsent\"", ",", "\"Prolog\""}], "]"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"SessionEpilog: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["None", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"SessionProlog: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["None", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Version: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"3.6.8\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Executable: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"C:\\\\Users\\\\yts\\\\AppData\\\\Local\\\\conda\\\\conda\\\
+\\envs\\\\drlnd\\\\python.exe\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"ReturnType: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"Expression\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"SessionOptions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", "}"}], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Active: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["True", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Socket: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  InterpretationBox[
+                   RowBox[{
+                    TagBox["SocketObject", "SummaryHead"], "[", 
+                    
+                    DynamicModuleBox[{
+                    Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+                    TemplateBox[{
+                    PaneSelectorBox[{False -> GridBox[{{
+                    PaneBox[
+                    ButtonBox[
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEBitmaps", "SquarePlusIconMedium"]], 
+                    ButtonFunction :> (Typeset`open$$ = True), Appearance -> 
+                    None, Evaluator -> Automatic, Method -> "Preemptive"], 
+                    Alignment -> {Center, Center}, ImageSize -> 
+                    Dynamic[{Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    GraphicsBox[
+                    GeometricTransformationBox[{{{
+                    FilledCurveBox[{{
+                    
+                    Line[{{36.558, 8.569}, {40.947, 8.569}, {40.947, 
+                    43.684000000000005`}, {36.558, 43.684000000000005`}, {
+                    36.558, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{59.053, 8.569}, {63.443, 8.569}, {63.443, 
+                    43.684000000000005`}, {59.053, 43.684000000000005`}, {
+                    59.053, 8.569}}]}}]}, {{
+                    FilledCurveBox[{{
+                    
+                    Line[{{55.487, 8.569}, {56.95, 8.569}, {56.95, 
+                    21.188000000000002`}, {55.487, 21.188000000000002`}, {
+                    55.487, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{52.562, 8.569}, {54.025, 8.569}, {54.025, 
+                    21.188000000000002`}, {52.562, 21.188000000000002`}, {
+                    52.562, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{49.636, 8.569}, {51.099000000000004`, 8.569}, {
+                    51.099000000000004`, 21.188000000000002`}, {49.636, 
+                    21.188000000000002`}, {49.636, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{46.709, 8.569}, {48.172000000000004`, 8.569}, {
+                    48.172000000000004`, 21.188000000000002`}, {46.709, 
+                    21.188000000000002`}, {46.709, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{43.783, 8.569}, {45.246, 8.569}, {45.246, 
+                    21.188000000000002`}, {43.783, 21.188000000000002`}, {
+                    43.783, 8.569}}]}}]}}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{40.947, 4.911}, {59.787000000000006`, 4.911}, {
+                    59.787000000000006`, 6.922}, {40.947, 6.922}, {40.947, 
+                    4.911}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{44.057, 31.675}, {56.678000000000004`, 31.675}, {
+                    56.678000000000004`, 39.051}, {44.057, 39.051}, {44.057, 
+                    31.675}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{44.057, 43.685}, {56.678000000000004`, 43.685}, {
+                    56.678000000000004`, 65.089}, {44.057, 65.089}, {44.057, 
+                    43.685}}]}}]}}}, {{{1, 0}, {0, -1}}, Center}], {
+                    ImageSize -> {Automatic, 
+                    Dynamic[3.5 CurrentValue["FontCapHeight"]]}, 
+                    PlotRange -> {{20, 80}, {0, 70}}, 
+                    BaseStyle -> {CacheGraphics -> False}, ImageSize -> 30}], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox["\"IPAddress: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"127.0.0.1\"", "SummaryItem"]}], 
+                    RowBox[{
+                    TagBox["\"Port: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"51551\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"UUID: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"43eb1e33-dc8f-427c-a24d-8eea8c2f48e8\"", 
+                    "SummaryItem"]}], 
+                    RowBox[{
+                    TagBox["\"Protocol: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"ZMQ_PAIR\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}], True -> GridBox[{{
+                    PaneBox[
+                    ButtonBox[
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEBitmaps", "SquareMinusIconMedium"]], 
+                    ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
+                    None, Evaluator -> Automatic, Method -> "Preemptive"], 
+                    Alignment -> {Center, Center}, ImageSize -> 
+                    Dynamic[{Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    GraphicsBox[
+                    GeometricTransformationBox[{{{
+                    FilledCurveBox[{{
+                    
+                    Line[{{36.558, 8.569}, {40.947, 8.569}, {40.947, 
+                    43.684000000000005`}, {36.558, 43.684000000000005`}, {
+                    36.558, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    Line[{{59.053, 8.569}, {63.443, 8.569}, {63.443, 
+                    43.684000000000005`}, {59.053, 43.684000000000005`}, {
+                    59.053, 8.569}}]}}]}, {{
+                    FilledCurveBox[{{
+                    
+                    Line[{{55.487, 8.569}, {56.95, 8.569}, {56.95, 
+                    21.188000000000002`}, {55.487, 21.188000000000002`}, {
+                    55.487, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{52.562, 8.569}, {54.025, 8.569}, {54.025, 
+                    21.188000000000002`}, {52.562, 21.188000000000002`}, {
+                    52.562, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{49.636, 8.569}, {51.099000000000004`, 8.569}, {
+                    51.099000000000004`, 21.188000000000002`}, {49.636, 
+                    21.188000000000002`}, {49.636, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{46.709, 8.569}, {48.172000000000004`, 8.569}, {
+                    48.172000000000004`, 21.188000000000002`}, {46.709, 
+                    21.188000000000002`}, {46.709, 8.569}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{43.783, 8.569}, {45.246, 8.569}, {45.246, 
+                    21.188000000000002`}, {43.783, 21.188000000000002`}, {
+                    43.783, 8.569}}]}}]}}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{40.947, 4.911}, {59.787000000000006`, 4.911}, {
+                    59.787000000000006`, 6.922}, {40.947, 6.922}, {40.947, 
+                    4.911}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{44.057, 31.675}, {56.678000000000004`, 31.675}, {
+                    56.678000000000004`, 39.051}, {44.057, 39.051}, {44.057, 
+                    31.675}}]}}]}, {
+                    FilledCurveBox[{{
+                    
+                    Line[{{44.057, 43.685}, {56.678000000000004`, 43.685}, {
+                    56.678000000000004`, 65.089}, {44.057, 65.089}, {44.057, 
+                    43.685}}]}}]}}}, {{{1, 0}, {0, -1}}, Center}], {
+                    ImageSize -> {Automatic, 
+                    Dynamic[3.5 CurrentValue["FontCapHeight"]]}, 
+                    PlotRange -> {{20, 80}, {0, 70}}, 
+                    BaseStyle -> {CacheGraphics -> False}, ImageSize -> 30}], 
+                    GridBox[{{
+                    RowBox[{
+                    TagBox[
+                    "\"DestinationIPAddress: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    RowBox[{"IPAddress", "[", "\"127.0.0.1\"", "]"}], 
+                    "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"DestinationPort: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"51551\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"SourceIPAddress: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    RowBox[{"IPAddress", "[", "\"127.0.0.1\"", "]"}], 
+                    "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"SourcePort: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"51552\"", "SummaryItem"]}]}, {
+                    RowBox[{
+                    TagBox["\"Protocol: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"ZMQ_PAIR\"", "SummaryItem"]}]}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+                    AutoDelete -> False, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+                    BaseStyle -> {
+                    ShowStringCharacters -> False, NumberMarks -> False, 
+                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+                    GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> 
+                    False, GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    BaselinePosition -> {1, 1}]}, 
+                    Dynamic[Typeset`open$$], ImageSize -> Automatic]}, 
+                    "SummaryPanel"], DynamicModuleValues :> {}], "]"}], 
+                   SocketObject["43eb1e33-dc8f-427c-a24d-8eea8c2f48e8"], 
+                   Selectable -> False, Editable -> False, SelectWithContents -> 
+                   True], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"ProcessMemory: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  DynamicBox[
+                   ToBoxes[
+                    If[
+                    And[
+                    ValueQ[ExternalEvaluate`Private`$Links], 
+                    KeyExistsQ[
+                    ExternalEvaluate`Private`$Links, 
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"]], 
+                    ExternalEvaluate`Private`$Links[
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec", "ProcessMemory"], 
+                    None], StandardForm]], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"ProcessThreads: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  DynamicBox[
+                   ToBoxes[
+                    If[
+                    And[
+                    ValueQ[ExternalEvaluate`Private`$Links], 
+                    KeyExistsQ[
+                    ExternalEvaluate`Private`$Links, 
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"]], 
+                    ExternalEvaluate`Private`$Links[
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec", "ProcessThreads"],
+                     None], StandardForm]], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"SessionTime: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  DynamicBox[
+                   ToBoxes[
+                    If[
+                    And[
+                    ValueQ[ExternalEvaluate`Private`$Links], 
+                    KeyExistsQ[
+                    ExternalEvaluate`Private`$Links, 
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"]], 
+                    ExternalSessionObject[
+                    "6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"]["SessionTime"], 
+                    None], StandardForm]], "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  ExternalSessionObject["6c60f12a-aa99-4d23-abc3-cd5b6a8e8cec"],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{
+  3.7902099409663787`*^9, {3.7902105378807926`*^9, 3.7902105457370143`*^9}, 
+   3.7902110747320957`*^9, 3.7902120935617495`*^9, 3.790213496146229*^9, 
+   3.7902141813583174`*^9, 3.7902147750671945`*^9},
+ CellLabel->
+  "Out[181]=",ExpressionUUID->"f4780603-66ad-4fcb-893f-693c6c557c3c"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{"ExternalEvaluate", "[", 
+  RowBox[{"session", ",", " ", "\"\<import os; import sys\>\""}], "]"}], "\n", 
+ RowBox[{"ExternalEvaluate", "[", 
+  RowBox[{"session", ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"<|", " ", 
+    RowBox[{
+     RowBox[{"\"\<Command\>\"", " ", "\[Rule]", " ", "\"\<os.chdir\>\""}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<Arguments\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "}"}]}]}], " ", "|>"}]}], 
+  "]"}], "\n", 
+ RowBox[{"ExternalEvaluate", "[", 
+  RowBox[{"session", ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"<|", " ", 
+    RowBox[{
+     RowBox[{
+     "\"\<Command\>\"", " ", "\[Rule]", " ", "\"\<sys.path.append\>\""}], ",",
+      "\[IndentingNewLine]", 
+     RowBox[{"\"\<Arguments\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"NotebookDirectory", "[", "]"}], "}"}]}]}], " ", "|>"}]}], 
+  "]"}], "\n", 
+ RowBox[{"ExternalEvaluate", "[", 
+  RowBox[{"session", ",", " ", "\"\<import plsa\>\""}], "]"}], "\n", 
+ RowBox[{"ExternalEvaluate", "[", 
+  RowBox[{"session", ",", " ", "\"\<import torch\>\""}], "]"}], "\n", 
+ RowBox[{"ExternalEvaluate", "[", 
+  RowBox[{"session", ",", " ", "\"\<import numpy\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.790209941882386*^9, 3.7902099428696995`*^9}, {
+   3.7902099957051697`*^9, 3.790210064324725*^9}, {3.7902103172304325`*^9, 
+   3.790210320319168*^9}, 3.79021213095382*^9},
+ CellLabel->
+  "In[182]:=",ExpressionUUID->"a9078a5e-e196-4d35-b19b-88cb9dfa547c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Timing", "[", 
+  RowBox[{
+   RowBox[{"plsa$result", " ", "=", 
+    RowBox[{"ExternalEvaluate", "[", 
+     RowBox[{"session", ",", " ", 
+      RowBox[{"<|", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+        "\"\<Command\>\"", " ", "\[Rule]", " ", 
+         "\"\<plsa.run_plsa_numpy\>\""}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<Arguments\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"RandomReal", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "10"}], "}"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"1000", ",", " ", "10"}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", "10", ",", "\[IndentingNewLine]", "100"}], 
+          "}"}]}]}], "\[IndentingNewLine]", "|>"}]}], "]"}]}], ";"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"plsa$result", "//", "Keys"}]}], "Input",
+ CellChangeTimes->{{3.790211521858837*^9, 3.7902116428858595`*^9}, {
+  3.7902116986002398`*^9, 3.790211746045334*^9}, {3.790211798123359*^9, 
+  3.7902118776239624`*^9}, {3.7902119163903427`*^9, 3.790212010718175*^9}, {
+  3.7902120748262076`*^9, 3.790212113226268*^9}, {3.7902121556022053`*^9, 
+  3.790212168099358*^9}, {3.7902135286973543`*^9, 3.790213530308134*^9}, {
+  3.790213666980551*^9, 3.790213675904523*^9}, {3.7902138594098463`*^9, 
+  3.7902138884876966`*^9}, {3.790213973933234*^9, 3.7902139782776794`*^9}, {
+  3.7902140149669456`*^9, 3.7902140155931997`*^9}, {3.790214257961467*^9, 
+  3.790214279579031*^9}},
+ CellLabel->
+  "In[188]:=",ExpressionUUID->"b62e1baf-cca4-4200-a1e3-ce7763cc8e9f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.203125`", ",", "Null"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7902120860942297`*^9, 3.790212114913467*^9}, {
+   3.7902121610917826`*^9, 3.7902121684595017`*^9}, 3.7902134987788706`*^9, 
+   3.7902135307568703`*^9, {3.790213668614143*^9, 3.790213686057372*^9}, {
+   3.7902138718726673`*^9, 3.7902138957590017`*^9}, 3.790213985197674*^9, 
+   3.7902140247978764`*^9, 3.7902141899428797`*^9, {3.790214264799019*^9, 
+   3.790214280894178*^9}, 3.790214777618761*^9},
+ CellLabel->
+  "Out[188]=",ExpressionUUID->"a32d832e-225d-4ea7-8d06-d0e1488de766"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"pz\"\>", ",", "\<\"pxi_given_zs\"\>", 
+   ",", "\<\"pz_given_xi\"\>", ",", "\<\"loglik\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7902120860942297`*^9, 3.790212114913467*^9}, {
+   3.7902121610917826`*^9, 3.7902121684595017`*^9}, 3.7902134987788706`*^9, 
+   3.7902135307568703`*^9, {3.790213668614143*^9, 3.790213686057372*^9}, {
+   3.7902138718726673`*^9, 3.7902138957590017`*^9}, 3.790213985197674*^9, 
+   3.7902140247978764`*^9, 3.7902141899428797`*^9, {3.790214264799019*^9, 
+   3.790214280894178*^9}, 3.790214777621007*^9},
+ CellLabel->
+  "Out[189]=",ExpressionUUID->"1aa6f318-5ce1-441d-9138-7c70eba694e8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"plsa$result", "[", "\"\<loglik\>\"", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.790214188864808*^9, 3.7902142035057383`*^9}},
+ CellLabel->
+  "In[190]:=",ExpressionUUID->"5344d7b8-76a7-4c46-819f-1df71cf55212"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJxTTMoPSmViYGAQAWIQjQQOXF0vdBDCFHEAEgo/fkpD+SogfsOJezC+HojP
+cOokjG8C4id074bxLcH6czfC+HZg+WcrofwGRzC/bglM3gXEPyC6ECbvBuIv
+eD0PJu8J5ufNhcl7g+0PmgOT9wPzs2dD+Q4BYPPnz4KpDwTzH8+E8g8EgdUb
+wPgMISD+g7oZMP2hYPdfnw7THwbm28P4B8LB4bF9mvRBAIA9QVY=
+      "]]}, {}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, -448172.79531250003`},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 95.}, {-458366.03125, -448658.1875}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.790214203855688*^9, {3.790214266664769*^9, 3.790214282144271*^9}, 
+   3.790214778793641*^9},
+ CellLabel->
+  "Out[190]=",ExpressionUUID->"a227d5fc-0295-4e18-ab72-3dbb765bd416"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"plsa$result", "[", "\"\<pz_given_xi\>\"", "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}], "\[Transpose]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.790212170393524*^9, 3.790212185051523*^9}, {
+  3.7902135369982452`*^9, 3.7902136330063496`*^9}, {3.790213921854705*^9, 
+  3.790213931323922*^9}},
+ CellLabel->
+  "In[160]:=",ExpressionUUID->"8b305da0-06bb-47e6-a8c4-1a878bab0d65"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.31956052780151367`}, {2., 0.00040739966789260507`}, {3., 
+      0.0015402265125885606`}, {4., 0.00008555289969081059}, {5., 
+      0.03002457693219185}, {6., 0.03436930105090141}, {7., 
+      0.4472665786743164}, {8., 0.07898513972759247}, {9., 
+      0.0872768759727478}, {10., 0.00048375927144661546`}}]}, 
+    {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.05907003954052925}, {2., 0.5289546847343445}, {3., 
+      0.0798054188489914}, {4., 0.00002566699549788609}, {5., 
+      0.00031064957147464156`}, {6., 0.004398857243359089}, {7., 
+      0.00027474440867081285`}, {8., 0.2865142226219177}, {9., 
+      0.039478883147239685`}, {10., 0.0011668088845908642`}}]}, 
+    {RGBColor[0.560181, 0.691569, 0.194885], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.019391167908906937`}, {2., 0.0012090777745470405`}, {3., 
+      0.08213477581739426}, {4., 0.31735876202583313`}, {5., 
+      0.01109424326568842}, {6., 0.000015911453374428675`}, {7., 
+      0.02370830625295639}, {8., 0.1539987325668335}, {9., 
+      0.06842125952243805}, {10., 0.3226676881313324}}]}, 
+    {RGBColor[0.922526, 0.385626, 0.209179], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.003135036677122116}, {2., 0.0029476911295205355`}, {3., 
+      0.0002225489151896909}, {4., 0.16521234810352325`}, {5., 
+      0.1109967827796936}, {6., 0.29067307710647583`}, {7., 
+      0.0011738116154447198`}, {8., 0.4218171536922455}, {9., 
+      0.00031671664328314364`}, {10., 0.0035048506688326597`}}]}, 
+    {RGBColor[0.528488, 0.470624, 0.701351], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.0004097578057553619}, {2., 0.08055936545133591}, {3., 
+      0.05641724169254303}, {4., 0.00004152850669925101}, {5., 
+      0.47164204716682434`}, {6., 0.021213887259364128`}, {7., 
+      0.05520445108413696}, {8., 0.002667410299181938}, {9., 
+      0.00031246879370883107`}, {10., 0.3115319013595581}}]}, 
+    {RGBColor[0.772079, 0.431554, 0.102387], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.0001273599045816809}, {2., 0.24942244589328766`}, {3., 
+      0.0023986399173736572`}, {4., 0.28747260570526123`}, {5., 
+      1.1500906111905351`*^-6}, {6., 0.10168888419866562`}, {7., 
+      0.3584951162338257}, {8., 0.00009520346793578938}, {9., 
+      0.00005559287819778547}, {10., 0.00024300087534356862`}}]}, 
+    {RGBColor[0.363898, 0.618501, 0.782349], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.000017535627193865366`}, {2., 0.01401522383093834}, {3., 
+      0.08086520433425903}, {4., 0.05938638374209404}, {5., 
+      0.2819635272026062}, {6., 0.012181849218904972`}, {7., 
+      0.00924598891288042}, {8., 0.017496738582849503`}, {9., 
+      0.524822473526001}, {10., 5.133796094014542*^-6}}]}, 
+    {RGBColor[1, 0.75, 0], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.2978419065475464}, {2., 0.09022000432014465}, {3., 
+      6.9867633101239335`*^-6}, {4., 0.08784914761781693}, {5., 
+      0.014006500132381916`}, {6., 0.037656236439943314`}, {7., 
+      0.0005622167373076081}, {8., 0.00020598378614522517`}, {9., 
+      0.22937838733196259`}, {10., 0.24227267503738403`}}]}, 
+    {RGBColor[0.647624, 0.37816, 0.614037], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.3162262439727783}, {2., 0.006982870399951935}, {3., 
+      0.43200698494911194`}, {4., 0.18127752840518951`}, {5., 
+      0.04999431595206261}, {6., 0.0008259922615252435}, {7., 
+      0.0109725845977664}, {8., 0.0015117409639060497`}, {9., 
+      0.00015036104014143348`}, {10., 0.000051446757424855605`}}]}, 
+    {RGBColor[0.571589, 0.586483, 0.], PointSize[
+      NCache[
+       Rational[1, 72], 0.013888888888888888`]], AbsoluteThickness[1.6], 
+     LineBox[{{1., 0.004900043830275536}, {2., 0.0007559522055089474}, {3., 
+      0.29152408242225647`}, {4., 0.0005049153696745634}, {5., 
+      3.6384222301677482`*^-9}, {6., 0.44921666383743286`}, {7., 
+      0.0032990085892379284`}, {8., 0.0011459850938990712`}, {9., 
+      0.09961061179637909}, {10., 0.14904272556304932`}}]}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0., 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0., 10.}, {0, 0.5289546847343445}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.7902135443418236`*^9, 3.7902136334058533`*^9}, 
+   3.790213689474699*^9, {3.7902139144426966`*^9, 3.7902139317995696`*^9}},
+ CellLabel->
+  "Out[160]=",ExpressionUUID->"57eeb018-05ab-4534-953a-e2f3e37769f9"]
+}, Open  ]]
+},
+WindowSize->{775, 688},
+WindowMargins->{{365, Automatic}, {Automatic, 54}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 12, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 332, 7, 28, "Input",ExpressionUUID->"14e1705f-bb7e-479c-8c70-e32ebbd337e6"],
+Cell[915, 31, 26435, 514, 71, "Output",ExpressionUUID->"f4780603-66ad-4fcb-893f-693c6c557c3c"]
+}, Open  ]],
+Cell[27365, 548, 1545, 34, 200, "Input",ExpressionUUID->"a9078a5e-e196-4d35-b19b-88cb9dfa547c"],
+Cell[CellGroupData[{
+Cell[28935, 586, 1659, 34, 162, "Input",ExpressionUUID->"b62e1baf-cca4-4200-a1e3-ce7763cc8e9f"],
+Cell[30597, 622, 587, 10, 32, "Output",ExpressionUUID->"a32d832e-225d-4ea7-8d06-d0e1488de766"],
+Cell[31187, 634, 659, 11, 32, "Output",ExpressionUUID->"1aa6f318-5ce1-441d-9138-7c70eba694e8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31883, 650, 263, 5, 28, "Input",ExpressionUUID->"5344d7b8-76a7-4c46-819f-1df71cf55212"],
+Cell[32149, 657, 1604, 42, 215, "Output",ExpressionUUID->"a227d5fc-0295-4e18-ab72-3dbb765bd416"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33790, 704, 457, 10, 28, "Input",ExpressionUUID->"8b305da0-06bb-47e6-a8c4-1a878bab0d65"],
+Cell[34250, 716, 5950, 114, 245, "Output",ExpressionUUID->"57eeb018-05ab-4534-953a-e2f3e37769f9"]
+}, Open  ]]
+}
+]
+*)
+

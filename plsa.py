@@ -26,10 +26,29 @@ def unsqueeze_ot(mat, i_s, n):
     return r
 
 
-def run_plsa(comat, nclass, niter, seed=0):
+def complement(x1, x2):
+    r = x1.copy()
+    for e in x2:
+        if e in x1:
+            r.remove(e)
+    return r
+
+
+def run_plsa_numpy(comat, nclass, niter, seed=0, nintvl_lik=None):
     p = PLSA(comat, nclass, seed)
-    p.em_algorithm(niter)
-    return {'pz': p.pz, 'pxi_given_zs': p.pxi_given_zs}
+    p.em_algorithm(niter, nintvl_lik=nintvl_lik)
+    pzxs = p.calc_pzxs()
+    n = p.data.dim()
+    return {
+        'pz': p.pz.numpy(),
+        'pxi_given_zs': [v.numpy() for v in p.pxi_given_zs],
+        'pz_given_xi': [
+            normalize(
+                pzxs.sum(dim=complement(list(range(1, n+1)), [i+1])),
+                [0]).numpy()
+            for i in range(p.data.dim())],
+        'loglik': p.loglik
+    }
 
 
 class PLSA:
@@ -57,7 +76,7 @@ class PLSA:
                                   for n in self.data.size()]
         self.pz = self.init_pz
         self.pxi_given_zs = self.init_pxi_given_zs
-        self.loglik = []
+        self.loglik = {}
 
     def calc_pzxs(self):
         n = self.data.dim()
@@ -81,7 +100,7 @@ class PLSA:
                 pxs = pzxs.sum(dim=0)
                 pxs[pxs == 0] = 1
                 ll = (pxs.log() * self.data).sum().item()
-                self.loglik = self.loglik + [ll]
+                self.loglik[i] = ll
             # M-Step
             tmp = pz_given_xs * self.data
             self.pxi_given_zs = [

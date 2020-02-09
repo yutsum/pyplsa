@@ -53,6 +53,14 @@ class TestPLSA(unittest.TestCase):
         data1 = torch.tensor([[3, 0, 0], [1, 0, 0], [0, 1, 1]])
         nclass = 2
         self.plsa1 = plsa.PLSA(data1, nclass)
+        data2 = torch.tensor(
+            [
+                [[3, 0, 0], [1, 0, 0], [0, 0, 0]],
+                [[3, 0, 0], [1, 0, 0], [0, 1, 1]],
+                [[0, 0, 0], [0, 0, 0], [0, 1, 1]]
+            ])
+        nclass = 2
+        self.plsa2 = plsa.PLSA(data2, nclass)
 
     def test_em_algorithm_yet(self):
         self.plsa1 = plsa.PLSA(self.plsa1.data, len(self.plsa1.pz))
@@ -64,11 +72,21 @@ class TestPLSA(unittest.TestCase):
 
     def test_em_algorithm(self):
         self.plsa1.em_algorithm(10)
-        ans = [torch.tensor([[0.7500, 0.2500, 0.0000], [0.0000, 0.0000, 1.0000]]),
-               torch.tensor([[1.0000, 0.0000, 0.0000], [0.0000, 0.5000, 0.5000]])]
+        ans = [torch.tensor([[0.75, 0.25, 0.00], [0.00, 0.00, 1.00]]),
+               torch.tensor([[1.00, 0.00, 0.00], [0.00, 0.50, 0.50]])]
         print(self.plsa1.loglik)
         for i in range(len(ans)):
             self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
+
+    def test_em_algorithm_3d(self):
+        self.plsa2.em_algorithm(10)
+        ans = [
+            torch.tensor([[0.00, 0.50, 0.50], [0.50, 0.50, 0.00]]),
+            torch.tensor([[0.00, 0.00, 1.00], [0.75, 0.25, 0.00]]),
+            torch.tensor([[0.00, 0.50, 0.50], [1.00, 0.00, 0.00]])]
+        print(self.plsa2.loglik)
+        for i in range(len(ans)):
+            self.assertEqual(0, tdiff(self.plsa2.pxi_given_zs[i], ans[i]))
 
     def test_em_algorithm_time(self):
         data1 = 10*torch.rand((10000, 100))

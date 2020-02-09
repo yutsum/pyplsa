@@ -34,11 +34,15 @@ def run_plsa(comat, nclass, niter, seed=0):
 
 class PLSA:
     def __init__(self, data, nclass, seed=0):
-        """
+        """ Multidimensional PLSA class (*)
+            intialized with co-occurance array and number of clusters
+            (*)  P(x_1, ..., x_m, c) = \Prod_i P(x_i|c) P(c),
+                 m is the dimension of the co-occurance array, typically two.
             >>> p1 = PLSA(data, nclass)
-            >>> p1.em_algorith(100)
-            >>> print(p1.pz)
-            >>> print(p1.pxi_given_zs)
+            >>> p1.em_algorith(100)  # EM-Algothim iteration 100 times
+            >>> print(p1.pz)         # P(Z) : probability of each clusters
+            >>> print(p1.pxi_given_zs)  # [P(x_i|z) \\in M(size of x_i, nclusters)]
+            >>> print(p1.loglik)     # list of log likelihood during EM-Alg.
         """
         self.data = torch.tensor(data, dtype=torch.float).to(device)
         self.nclass = nclass
@@ -57,6 +61,8 @@ class PLSA:
 
     def calc_pzxs(self):
         n = self.data.dim()
+        # construct probability tensor list to be mltiplied with broadcast
+        # note: v1.ger(v2) == v1.unsqueeze(1) * v2.unsqueeze(0)
         ps = [unsqueeze_ot(self.pz, [0], n + 1)] +\
              [unsqueeze_ot(self.pxi_given_zs[j], [0, j + 1], n + 1)
               for j in range(len(self.pxi_given_zs))]
@@ -69,12 +75,13 @@ class PLSA:
             # E-Step
             n = self.data.dim()
             pzxs = self.calc_pzxs()
+            pz_given_xs = normalize(pzxs, 0)
+            # Record log likelihood
             if i % nintvl_lik == 0:
                 pxs = pzxs.sum(dim=0)
                 pxs[pxs == 0] = 1
                 ll = (pxs.log() * self.data).sum().item()
                 self.loglik = self.loglik + [ll]
-            pz_given_xs = normalize(pzxs, 0)
             # M-Step
             tmp = pz_given_xs * self.data
             self.pxi_given_zs = [

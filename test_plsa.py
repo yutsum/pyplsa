@@ -1,6 +1,7 @@
 import unittest
 import plsa
 import torch
+import time
 
 
 def tdiff(m1, m2):
@@ -69,6 +70,15 @@ class TestPLSA(unittest.TestCase):
         for i in range(len(ans)):
             self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
 
+    def test_em_algorithm_time(self):
+        data1 = 10*torch.rand((10000, 100))
+        nclass = 10
+        p1 = plsa.PLSA(data1, nclass)
+        start = time.time()
+        p1.em_algorithm(10)
+        end = time.time()
+        print(self.plsa1.loglik)
+        self.assertLessEqual(end - start, 1)  # less than 1 sec
 
 if __name__ == '__main__':
     unittest.main()

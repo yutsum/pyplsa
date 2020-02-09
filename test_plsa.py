@@ -51,6 +51,7 @@ class TestPLSA(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         data1 = torch.tensor([[3, 0, 0], [1, 0, 0], [0, 1, 1]])
+        self.data1 = data1
         nclass = 2
         self.plsa1 = plsa.PLSA(data1, nclass)
         data2 = torch.tensor(
@@ -90,13 +91,18 @@ class TestPLSA(unittest.TestCase):
 
     def test_em_algorithm_time(self):
         data1 = 10*torch.rand((10000, 100))
-        nclass = 10
+        nclass =8 
         p1 = plsa.PLSA(data1, nclass)
         start = time.time()
-        p1.em_algorithm(10)
+        p1.em_algorithm(8)
         end = time.time()
         print(self.plsa1.loglik)
         self.assertLessEqual(end - start, 1)  # less than 1 sec
+
+    def test_run_plsa_numpy(self):
+        ans = plsa.run_plsa_numpy(self.data1, 2, 10)
+        print(ans)
+        pass
 
 if __name__ == '__main__':
     unittest.main()

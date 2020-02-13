@@ -1,6 +1,8 @@
 import torch
 import numpy as np
 import functools
+import scipy
+import scipy.optimize
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
@@ -34,21 +36,40 @@ def complement(x1, x2):
     return r
 
 
-def run_plsa_numpy(comat, nclass, niter, seed=0, nintvl_lik=None):
+def run_plsa_numpy(
+        comat, nclass, niter,
+        seed=0, nintvl_lik=None, with_pz_given_xi=False):
     p = PLSA(comat, nclass, seed)
     p.em_algorithm(niter, nintvl_lik=nintvl_lik)
-    pzxs = p.calc_pzxs()
     n = p.data.dim()
-    return {
+    r = {
         'pz': p.pz.numpy(),
         'pxi_given_zs': [v.numpy() for v in p.pxi_given_zs],
-        'pz_given_xi': [
+        'loglik': p.loglik
+    }
+
+    if with_pz_given_xi:
+        pzxs = p.calc_pzxs()
+        r.update({'pz_given_xi': [
             normalize(
                 pzxs.sum(dim=complement(list(range(1, n+1)), [i+1])),
                 [0]).numpy()
-            for i in range(p.data.dim())],
-        'loglik': p.loglik
-    }
+            for i in range(p.data.dim())]})
+    return r
+
+
+def kl_divergence(p, q, dim=0):
+    # return (p * (p / q).log()).sum(dim=dim)
+    m = (p / q).log()
+    m[q == 0] = 9999
+    m[p == 0] = 0
+    return (p * m).sum(dim=dim)
+
+
+def cluster_matching(ps):
+    # p(xi|z) is given as list {p(xi|z_j) \in M(nj x nxi) ; i}
+
+
 
 
 class PLSA:
@@ -72,7 +93,7 @@ class PLSA:
         torch.random.manual_seed(self.seed)
         nclass = self.nclass
         self.init_pz = normalize(torch.ones(nclass)).to(device)
-        self.init_pxi_given_zs = [torch.rand(nclass, n).to(device) / nclass
+        self.init_pxi_given_zs = [normalize(torch.rand(nclass, n), 1).to(device)
                                   for n in self.data.size()]
         self.pz = self.init_pz
         self.pxi_given_zs = self.init_pxi_given_zs
@@ -107,3 +128,13 @@ class PLSA:
                 normalize(torch.sum(tmp, [j + 1 for j in range(n) if j != k]), 1)
                 for k in range(n)]
             self.pz = normalize(torch.sum(tmp, list(range(1, n + 1))))
+    
+    # [FIXME][BROKEN] Draft
+    def ga_optimize(self, **args):
+        def func(x):
+            return x.sum()
+        nparam = 10
+        scipy.optimize.differential_evolution(
+            func,
+            [(0, 1) for i in range(nparam)], **args)
+

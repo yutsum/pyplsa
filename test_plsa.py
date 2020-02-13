@@ -46,6 +46,23 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(0, tdiff(
             torch.tensor([[1.0, 2]]), plsa.unsqueeze_ot(self.m3, [1], 2)))
 
+    def test_kl_divergence_1(self):
+        self.assertEqual(0, plsa.kl_divergence(
+            torch.tensor([0.1, 0.2, 0.3]),
+            torch.tensor([0.1, 0.2, 0.3])))
+
+    def test_kl_divergence_2(self):
+        self.assertAlmostEqual(0.1386294365, plsa.kl_divergence(
+            torch.tensor([0.2, 0.2, 0.3]),
+            torch.tensor([0.1, 0.2, 0.3])))
+
+    def test_kl_divergence_3(self):
+        self.assertAlmostEqual(0, tdiff(
+            torch.tensor([0.04440307, 0, 0]),
+            plsa.kl_divergence(
+                torch.tensor([[0.2, 0.2, 0.3], [0.8, 0.8, 0.7]]),
+                torch.tensor([[0.1, 0.2, 0.3], [0.9, 0.8, 0.7]]))))
+
 
 class TestPLSA(unittest.TestCase):
     @classmethod
@@ -75,17 +92,17 @@ class TestPLSA(unittest.TestCase):
         self.plsa1.em_algorithm(10)
         ans = [torch.tensor([[0.75, 0.25, 0.00], [0.00, 0.00, 1.00]]),
                torch.tensor([[1.00, 0.00, 0.00], [0.00, 0.50, 0.50]])]
-        print(self.plsa1.loglik)
+        # print(self.plsa1.loglik)
         for i in range(len(ans)):
             self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
 
     def test_em_algorithm_3d(self):
-        self.plsa2.em_algorithm(10)
+        self.plsa2.em_algorithm(20)
         ans = [
             torch.tensor([[0.00, 0.50, 0.50], [0.50, 0.50, 0.00]]),
             torch.tensor([[0.00, 0.00, 1.00], [0.75, 0.25, 0.00]]),
             torch.tensor([[0.00, 0.50, 0.50], [1.00, 0.00, 0.00]])]
-        print(self.plsa2.loglik)
+        # print(self.plsa2.loglik)
         for i in range(len(ans)):
             self.assertEqual(0, tdiff(self.plsa2.pxi_given_zs[i], ans[i]))
 
@@ -96,12 +113,12 @@ class TestPLSA(unittest.TestCase):
         start = time.time()
         p1.em_algorithm(8)
         end = time.time()
-        print(self.plsa1.loglik)
+        # print(self.plsa1.loglik)
         self.assertLessEqual(end - start, 1)  # less than 1 sec
 
     def test_run_plsa_numpy(self):
         ans = plsa.run_plsa_numpy(self.data1, 2, 10)
-        print(ans)
+        # print(ans)
         pass
 
 if __name__ == '__main__':

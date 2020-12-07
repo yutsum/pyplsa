@@ -16,10 +16,16 @@ def normalize(mat, dim=()):
 
 
 def unsqueeze_ot(mat, i_s, n):
-    """ Unsqueeze other than i_s(list) dimensions up to n
+    """ Unsqueeze every dimention from 0 to (n - 1) in turn other than i_s(list) dimensions
 
-        >>> unsqeeze_ot(torch.tensor([1.0, 2.0]), 0, 2)
-        tensor([[1.0], [2.0]])
+        >>> unsqeeze_ot(torch.tensor([1.0, 2.0]), [0], 2)
+        tensor([[1.0], [2.0]]) # [2, 1]
+        >>> unsqeeze_ot(torch.tensor([1.0, 2.0]), [], 2)
+        tensor([[[1.0, 2.0]]) # [1, 1, 2]
+        >>> unsqeeze_ot(torch.tensor([1.0, 2.0]), [1], 2)
+        tensor([1.0, 2.0]) #  [2], because 0-th dimension is not squeezed
+        >>> unsqeeze_ot(torch.tensor([1.0, 2.0]), [1], 3)
+        tensor([[[1.0], [2.0]]]) #  [1, 2, 1]
     """
     r = mat.clone()
     for j in range(n):
@@ -66,10 +72,17 @@ def kl_divergence(p, q, dim=0):
     return (p * m).sum(dim=dim)
 
 
-def cluster_matching(ps):
-    # p(xi|z) is given as list {p(xi|z_j) \in M(nj x nxi) ; i}
+def cluster_matching(ps1, ps2):
+    # p(xi|z) is given as list {p(xi|z) \in M(nz x nxi) ; i}
+    return
 
 
+def calc_pxiall_given_z(pxi_given_zs):
+    n = len(pxi_given_zs)
+    ps = [unsqueeze_ot(pxi_given_zs[j], [0, j + 1], n + 1)
+          for j in range(len(pxi_given_zs))]
+    return normalize(functools.reduce(
+            torch.mul, ps[1:], ps[0]), tuple(range(1, len(pxi_given_zs) + 1)))
 
 
 class PLSA:
@@ -128,7 +141,7 @@ class PLSA:
                 normalize(torch.sum(tmp, [j + 1 for j in range(n) if j != k]), 1)
                 for k in range(n)]
             self.pz = normalize(torch.sum(tmp, list(range(1, n + 1))))
-    
+
     # [FIXME][BROKEN] Draft
     def ga_optimize(self, **args):
         def func(x):
@@ -137,4 +150,3 @@ class PLSA:
         scipy.optimize.differential_evolution(
             func,
             [(0, 1) for i in range(nparam)], **args)
-

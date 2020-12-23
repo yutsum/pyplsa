@@ -97,7 +97,7 @@ class PLSA:
             >>> print(p1.pxi_given_zs)  # [P(x_i|z) \\in M(size of x_i, nclusters)]
             >>> print(p1.loglik)     # list of log likelihood during EM-Alg.
         """
-        self.data = torch.tensor(data, dtype=torch.float).to(device)
+        self.data = torch.as_tensor(data, dtype=torch.float).to(device)
         self.nclass = nclass
         self.seed = seed
         self.reset()

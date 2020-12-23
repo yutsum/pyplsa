@@ -49,8 +49,8 @@ def run_plsa_numpy(
     p.em_algorithm(niter, nintvl_lik=nintvl_lik)
     n = p.data.dim()
     r = {
-        'pz': p.pz.numpy(),
-        'pxi_given_zs': [v.numpy() for v in p.pxi_given_zs],
+        'pz': p.pz.cpu().numpy(),
+        'pxi_given_zs': [v.cpu().numpy() for v in p.pxi_given_zs],
         'loglik': p.loglik
     }
 

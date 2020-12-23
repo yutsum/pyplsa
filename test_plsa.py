@@ -5,7 +5,7 @@ import time
 
 
 def tdiff(m1, m2):
-    return torch.sum(abs(m1 - m2))
+    return torch.sum(abs(m1.cpu() - m2.cpu()))
 
 
 class TestUtility(unittest.TestCase):

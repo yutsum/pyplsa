@@ -72,8 +72,8 @@ def kl_divergence(p, q, dim=0):
     return (p * m).sum(dim=dim)
 
 
-def cluster_matching(ps1, ps2):
-    # p(xi|z) is given as list {p(xi|z) \in M(nz x nxi) ; i}
+def cluster_matching(ps):
+    # p(xi|z) is given as list {p(xi|z_j) \in M(nj x nxi) ; i}
     return
 
 
@@ -102,14 +102,23 @@ class PLSA:
         self.seed = seed
         self.reset()
 
-    def reset(self):
+    def reset(self, inds_fixed=[]):
+        """ inds_fixed {-1: p(z), 0: p(x1|z), ...}
+        """
         torch.random.manual_seed(self.seed)
         nclass = self.nclass
         self.init_pz = normalize(torch.ones(nclass)).to(device)
         self.init_pxi_given_zs = [normalize(torch.rand(nclass, n), 1).to(device)
                                   for n in self.data.size()]
-        self.pz = self.init_pz
-        self.pxi_given_zs = self.init_pxi_given_zs
+        if inds_fixed.count(-1) == 0:
+            self.pz = self.init_pz
+        if not inds_fixed.count:
+            self.pxi_given_zs = self.init_pxi_given_zs
+        else:
+            self.pxi_given_zs = [
+                self.init_pxi_given_zs[k] if inds_fixed.count(k) == 0
+                else self.pxi_given_zs[k]
+                for k in range(len(self.init_pxi_given_zs))]
         self.loglik = {}
 
     def calc_pzxs(self):
@@ -121,7 +130,9 @@ class PLSA:
               for j in range(len(self.pxi_given_zs))]
         return functools.reduce(torch.mul, ps[1:], ps[0])
 
-    def em_algorithm(self, niter, nintvl_lik=None):
+    def em_algorithm(self, niter, inds_fixed=[], nintvl_lik=None):
+        """ inds_fixed {-1: p(z), 0: p(x1|z), ...}
+        """
         if nintvl_lik is None:
             nintvl_lik = max(np.floor(niter / 20.0), 1)
         for i in range(niter):
@@ -138,15 +149,31 @@ class PLSA:
             # M-Step
             tmp = pz_given_xs * self.data
             self.pxi_given_zs = [
-                normalize(torch.sum(tmp, [j + 1 for j in range(n) if j != k]), 1)
+                normalize(
+                    torch.sum(tmp, [j + 1 for j in range(n) if j != k]), 
+                    1) if inds_fixed.count(k) == 0 else self.pxi_given_zs[k]
                 for k in range(n)]
-            self.pz = normalize(torch.sum(tmp, list(range(1, n + 1))))
+            self.pz = normalize(torch.sum(tmp, list(range(1, n + 1)))) \
+                      if inds_fixed.count(-1) == 0 else self.pz
 
-    # [FIXME][BROKEN] Draft
-    def ga_optimize(self, **args):
-        def func(x):
-            return x.sum()
-        nparam = 10
-        scipy.optimize.differential_evolution(
-            func,
-            [(0, 1) for i in range(nparam)], **args)
+    def calc_loglik(self):
+        pzxs = self.calc_pzxs()
+        pxs = pzxs.sum(dim=0)
+        pxs[pxs == 0] = 1
+        return (pxs.log() * self.data).sum().item()
+
+
+class GA_PLSA:  # [FIXME][BROKEN] Draft
+    def __init__(self, data, nclass, npopulation, seed=0):
+        torch.random.manual_seed(self.seed)
+        self.population = [PLSA(data, nclass, seed=torch.randint()) in range(npopulation)]
+        self.nelite = 2
+        self.rcrossover = 0.5
+
+    def create_next_gen(self):
+        fitness = [p.calc_loglik() for p in self.population]
+        population = sorted(self.population, key=fitness)
+        # elite
+        popu_elite = population[0:self.nelite]
+        # crossover
+        # mutate

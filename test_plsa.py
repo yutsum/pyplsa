@@ -96,6 +96,18 @@ class TestPLSA(unittest.TestCase):
         for i in range(len(ans)):
             self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
 
+    def test_em_algorithm_dim0(self):
+        # Example of document likelihood estimation with given p(z) and p(x1|z)
+        self.plsa1.data = torch.tensor([[4, 0, 0], [1, 5, 0], [1, 2, 1]],
+                                       dtype=torch.float)
+        self.plsa1.reset(inds_fixed=[-1, 0])
+        self.plsa1.em_algorithm(10, inds_fixed=[-1, 0])
+        ans = [torch.tensor([[0.75, 0.25, 0.00], [0.00, 0.00, 1.00]]),
+               torch.tensor([[0.50, 0.50, 0.00], [0.25, 0.50, 0.25]])]
+        # print(self.plsa1.loglik)
+        for i in range(len(ans)):
+            self.assertEqual(0, tdiff(self.plsa1.pxi_given_zs[i], ans[i]))
+
     def test_em_algorithm_3d(self):
         self.plsa2.em_algorithm(20)
         ans = [
